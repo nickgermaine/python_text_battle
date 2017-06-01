@@ -179,6 +179,8 @@ while running:
     # Enemy attack phase
     for enemy in enemies:
         enemy_choice = random.randrange(0, 2)
+        if enemy.mp < 25:
+            enemy_choice = 0
 
         if enemy_choice == 0:
             # Chose attack
