@@ -122,55 +122,12 @@ class Person:
               current_hp + " |" + bcolors.FAIL + hp_bar + bcolors.ENDC + "|")
 
     def get_stats(self):
-        hp_bar = ""
-        bar_ticks = (self.hp / self.maxhp) * 100 / 4
-
-        mp_bar = ""
-        mp_ticks = (self.mp / self.maxmp) * 100 / 10
-
-        while bar_ticks > 0:
-            hp_bar += "█"
-            bar_ticks -= 1
-
-        while len(hp_bar) < 25:
-            hp_bar += " "
-
-        while mp_ticks > 0:
-            mp_bar += "█"
-            mp_ticks -= 1
-
-        while len(mp_bar) < 10:
-            mp_bar += " "
+        hp_bar = "█"*int((self.hp/self.maxhp)*100 / 4) + " "*(25-len(str("█"*int((self.hp/self.maxhp)*100 / 4))))
+        mp_bar = "█"*int((self.mp/self.maxmp)*100 / 10) + " "*(10-len(str("█"*int((self.mp/self.maxmp)*100 / 10))))
 
 
-        hp_string = str(self.hp) + "/" + str(self.maxhp)
-        current_hp = ""
-
-        if len(hp_string) < 9:
-            decreased = 9 - len(hp_string)
-
-            while decreased > 0:
-                current_hp += " "
-                decreased -= 1
-
-            current_hp += hp_string
-        else:
-            current_hp = hp_string
-
-        mp_string = str(self.mp) + "/" + str(self.maxmp)
-        current_mp = ""
-
-        if len(mp_string) < 7:
-            decreased = 7 - len(mp_string)
-            while decreased > 0:
-                current_mp += " "
-                decreased -= 1
-
-            current_mp += mp_string
-
-        else:
-            current_mp = mp_string
-
+        current_hp = " "*(9-len(str(self.hp) + "/" + str(self.maxhp))) + str(self.hp) + "/" + str(self.maxhp)
+        current_mp = " "*(7-len(str(self.mp) + "/" + str(self.maxmp))) + str(self.mp) + "/" + str(self.maxmp)
         print("                     _________________________              __________ ")
         print(bcolors.BOLD + self.name + "    " +
               current_hp +" |" + bcolors.OKGREEN + hp_bar + bcolors.ENDC + "|    " +
